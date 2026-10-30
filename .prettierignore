@@ -1,0 +1,7 @@
+dist/
+dist-server/
+node_modules/
+test-results/
+playwright-report/
+.local/
+premium-audit.json

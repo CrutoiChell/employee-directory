@@ -1,0 +1,142 @@
+.select__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 14px;
+  text-align: left;
+  transition: var(--control-transition);
+}
+.select__trigger:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+.select__trigger:focus-visible,
+.select__trigger[data-state='open'] {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+.select__trigger:active:not(:disabled) {
+  background: var(--background);
+}
+.select__value {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.select__arrow {
+  width: 16px;
+  height: 16px;
+  color: var(--secondary);
+  transform: rotate(90deg);
+}
+.select__trigger[data-state='open'] .select__arrow {
+  transform: rotate(270deg);
+}
+.select__content {
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  width: var(--radix-select-trigger-width);
+  max-height: min(320px, var(--radix-select-content-available-height));
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 4px 16px #1d1d1f14;
+  animation: select-appear 160ms ease-out;
+}
+.select__content:focus-visible {
+  outline: none;
+}
+.select__content .select__viewport {
+  min-height: 0;
+  padding: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+}
+/* Radix hides the native scrollbar; keep it visible for long department lists. */
+.select__content .select__viewport::-webkit-scrollbar {
+  display: block;
+}
+.select__item {
+  position: relative;
+  min-height: 36px;
+  padding: 8px 34px 8px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 20px;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+.select__item[data-highlighted] {
+  background: var(--background);
+}
+.select__item[data-state='checked'] {
+  background: var(--selection);
+  color: var(--accent-hover);
+  font-weight: 550;
+}
+.select__item[data-highlighted]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+.select__indicator {
+  position: absolute;
+  inset: 0 10px 0 auto;
+  display: flex;
+  align-items: center;
+  color: var(--accent);
+}
+.select__indicator .icon {
+  width: 16px;
+  height: 16px;
+}
+@keyframes select-appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 600px) {
+  .select__trigger,
+  .select__item {
+    font-size: 16px;
+  }
+}
+@media (forced-colors: active) {
+  .select__trigger:focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: -1px;
+  }
+  .select__content {
+    border-color: CanvasText;
+  }
+  .select__content .select__viewport {
+    scrollbar-color: auto;
+  }
+  .select__item[data-state='checked'] {
+    color: HighlightText;
+    background: Highlight;
+  }
+  .select__indicator {
+    color: inherit;
+  }
+}

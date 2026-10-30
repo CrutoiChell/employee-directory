@@ -1,0 +1,62 @@
+.topbar {
+  height: 68px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.topbar:has(.topbar__error) {
+  height: auto;
+  min-height: 68px;
+}
+.topbar:has(.topbar__error) .topbar__inner {
+  min-height: 68px;
+}
+.topbar__error {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 8px 24px;
+}
+.topbar__inner {
+  max-width: 1100px;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.topbar__account {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 0;
+}
+.topbar__email {
+  font-size: 13px;
+  color: var(--secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 300px;
+}
+.topbar__account .button {
+  padding-inline: 10px;
+}
+@media (max-width: 1190px) {
+  .topbar__inner {
+    margin-inline: 32px;
+  }
+}
+@media (max-width: 600px) {
+  .topbar {
+    height: 60px;
+  }
+  .topbar__inner {
+    margin-inline: 20px;
+  }
+  .topbar__email {
+    display: none;
+  }
+  .topbar__account {
+    gap: 0;
+  }
+}

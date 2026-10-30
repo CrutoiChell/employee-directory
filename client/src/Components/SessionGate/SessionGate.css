@@ -1,0 +1,17 @@
+.session-state {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  text-align: center;
+}
+.session-state h1 {
+  font-size: 24px;
+}
+.session-state > p:not(.error) {
+  font-size: 14px;
+  color: var(--secondary);
+}

@@ -1,0 +1,76 @@
+.field {
+  margin-top: 4px;
+}
+.field__label {
+  display: block;
+  font-size: 13px;
+  font-weight: 550;
+  margin-bottom: 8px;
+}
+.field__required {
+  color: var(--secondary);
+}
+.field__control {
+  position: relative;
+}
+.field__input {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  padding: 10px 12px;
+  font-size: 16px;
+  line-height: 1.5;
+  transition: var(--control-transition);
+}
+.field__input:focus-visible {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+.field__input:hover {
+  border-color: var(--accent);
+}
+.field__input[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+.field__input--password {
+  padding-right: 92px;
+}
+.field__reveal {
+  position: absolute;
+  inset: 3px 4px 3px auto;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--secondary);
+  font-size: 12px;
+  padding: 0 8px;
+}
+.field__reveal:hover {
+  background: var(--background);
+  color: var(--text);
+}
+.field__reveal:active {
+  background: var(--border);
+}
+.field__help {
+  min-height: 26px;
+  font-size: 12px;
+  line-height: 1.4;
+  padding-top: 5px;
+  padding-bottom: 4px;
+  color: var(--secondary);
+}
+.field__help--error {
+  color: var(--danger);
+}
+@media (forced-colors: active) {
+  .field__input:focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: -1px;
+  }
+}
