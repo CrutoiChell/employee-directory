@@ -3,27 +3,27 @@ import type { EmployeeInput } from '../../shared/validation.js';
 
 const demoEmployees: EmployeeInput[] = [
   {
-    fullName: 'Алексей Морозов',
+    fullName: 'Морозов Алексей Сергеевич',
     position: 'Frontend-разработчик',
     department: 'Разработка',
   },
   {
-    fullName: 'Мария Волкова',
+    fullName: 'Волкова Мария Андреевна',
     position: 'Продуктовый дизайнер',
     department: 'Дизайн',
   },
   {
-    fullName: 'Дмитрий Соколов',
+    fullName: 'Соколов Дмитрий Алексеевич',
     position: 'Руководитель проектов',
     department: 'Управление проектами',
   },
   {
-    fullName: 'Елена Кузнецова',
+    fullName: 'Кузнецова Елена Викторовна',
     position: 'HR-менеджер',
     department: 'Персонал',
   },
   {
-    fullName: 'Никита Орлов',
+    fullName: 'Орлов Никита Павлович',
     position: 'Инженер по тестированию',
     department: 'Разработка',
   },

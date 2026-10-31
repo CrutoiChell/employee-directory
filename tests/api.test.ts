@@ -12,6 +12,8 @@ test('пять демонстрационных сотрудников доба�
   const first = createApp(databasePath);
   const initial = first.db.prepare('SELECT * FROM employees ORDER BY id').all();
   assert.equal(initial.length, 5);
+  for (const employee of initial)
+    assert.equal(String(employee.fullName).trim().split(/\s+/u).length, 3);
   first.db
     .prepare(
       'INSERT INTO employees (fullName, position, department) VALUES (?, ?, ?)',
@@ -32,6 +34,36 @@ test('пять демонстрационных сотрудников доба�
     initial,
   );
   second.db.close();
+  rmSync(directory, { recursive: true, force: true });
+});
+
+test('существующая база со старым seed не изменяется и не получает дубли', function legacySeed() {
+  const directory = mkdtempSync(path.join(tmpdir(), 'directory-legacy-test-'));
+  const databasePath = path.join(directory, 'legacy.sqlite');
+  const legacy = createApp(databasePath, { seed: false });
+  const insert = legacy.db.prepare(
+    'INSERT INTO employees (fullName, position, department) VALUES (?, ?, ?)',
+  );
+  for (const name of [
+    'Алексей Морозов',
+    'Мария Волкова',
+    'Дмитрий Соколов',
+    'Елена Кузнецова',
+    'Никита Орлов',
+    'Пользовательская запись',
+  ])
+    insert.run(name, 'Специалист', 'Отдел');
+  legacy.db
+    .prepare('INSERT INTO migrations (name) VALUES (?)')
+    .run('demo-employees-v1');
+  const before = legacy.db.prepare('SELECT * FROM employees ORDER BY id').all();
+  legacy.db.close();
+  const reopened = createApp(databasePath);
+  assert.deepEqual(
+    reopened.db.prepare('SELECT * FROM employees ORDER BY id').all(),
+    before,
+  );
+  reopened.db.close();
   rmSync(directory, { recursive: true, force: true });
 });
 
